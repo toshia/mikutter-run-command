@@ -8,7 +8,6 @@ Plugin.create :run_com do
           visible: false,
           role: :window) do |opt|
     Thread.new {
-      #if UserConfig[:runcom] != NULL then
       if UserConfig[:runcom] != "" then
         system(UserConfig[:runcom])
       else
