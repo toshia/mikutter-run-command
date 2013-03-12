@@ -1,7 +1,7 @@
 ・なんこれ
 　mikutter上で任意のコマンドをショートカットキーなどで実行できるようにするプラグイン
 ・インストール方法
-　git clone https://github.com/yukkurisinai/mikutter-run-command.git ~/.mikutter/plugin/mikutter-run-command
+　$ git clone https://github.com/yukkurisinai/mikutter-run-command.git ~/.mikutter/plugin/mikutter-run-command
 ・使い方
 　設定からコマンドを指定してからショートカットキーとか設定すればいいと思うよ
 ・使い道の例
