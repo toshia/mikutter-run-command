@@ -4,7 +4,8 @@
 　$ git clone https://github.com/yukkurisinai/mikutter-run-command.git ~/.mikutter/plugin/mikutter-run-command
 ・使い方
 　設定からコマンドを指定してからショートカットキーとか設定すればいいと思うよ
+　！設定して再起動なりしないとショートカットキーへの登録など出来ません
 ・使い道の例
 　ejectに設定→ショートカットキーを設定→ショートカットキー実行→eject
 ・Todo
-　コマンドを複数指定、それぞれにショートカットキーを割り当てられるように
+　動的にコマンド登録できるように
