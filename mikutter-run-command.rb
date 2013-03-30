@@ -18,6 +18,8 @@ Plugin.create :run_com do
     end
   end
   
+  main
+  
 =begin TODO
      commandメソッドのフィルタを監視して動的にコマンド登録
 =end
