@@ -2,23 +2,30 @@
 
 Plugin.create :run_com do
 
-  command(:run_com,
-          name: '指定コマンドの実行',
-          condition: lambda{|opt| true},
-          visible: false,
-          role: :window) do |opt|
-    Thread.new {
-      if UserConfig[:runcom] != "" then
-        system(UserConfig[:runcom])
-      else
-        ::Plugin.call(:update, nil, [Message.new(message: "コマンドが指定されていません", system: true)])
+  def main
+    (UserConfig[:runcom]|| []).select{|m|!m.empty?}.each do |str|
+      name="コマンド実行 #{str}"
+      slug=":#{str}"
+      command(slug.to_sym,
+              name: name,
+              condition: lambda{|opt| true},
+              visible: false,
+              role: :window) do |opt|
+        Thread.new {
+          system(str)
+        }
       end
-    }
-  end
-
-  settings "コマンド実行" do
-    settings "コマンドの指定" do
-      input "command", :runcom
     end
   end
+  
+=begin TODO
+     commandメソッドのフィルタを監視して動的にコマンド登録
+=end
+  
+  settings "コマンド実行" do
+    settings "コマンドの指定" do
+      multi "command", :runcom
+    end
+  end
+
 end
