@@ -17,13 +17,22 @@ Plugin.create :run_com do
       end
     end
   end
-  
+
+#もっとスマートに書けるはず
+#1秒毎に設定を確認してcommandに登録
+  def sub
+    old=(UserConfig[:runcom]|| []).select{|m|!m.empty?}
+    Reserver.new(1){
+      if (UserConfig[:runcom]|| []).select{|m|!m.empty?}!=old
+        main
+      end
+      sub
+    }
+  end  
+
   main
-  
-=begin TODO
-     commandメソッドのフィルタを監視して動的にコマンド登録
-=end
-  
+  sub
+
   settings "コマンド実行" do
     settings "コマンドの指定" do
       multi "command", :runcom
