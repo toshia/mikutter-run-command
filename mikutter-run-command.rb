@@ -2,18 +2,19 @@
 
 Plugin.create :run_com do
 
-  (UserConfig[:runcom]|| []).select{|m|!m.empty?}.each do |str|
-    name="コマンド実行 #{str}"
-    slug=":#{str}"
-    command(slug.to_sym,
-            name: name,
-            condition: lambda{|opt| true},
-            visible: false,
-            role: :window) do |opt|
-      Thread.new {
-        system(str)
-      }
+  filter_command do |menu|
+    (UserConfig[:runcom]|| []).select{|m|!m.empty?}.each do |str|
+      slug = str.to_sym
+      menu[slug] = {
+        slug: slug,
+        name: "コマンド実行 #{str}",
+        condition: lambda{|opt| true},
+        visible: false,
+        role: :window,
+        exec: ->(opt){ bg_system(str) },
+        plugin: @name}
     end
+    [menu]
   end
 
   settings "コマンド実行" do
