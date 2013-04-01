@@ -4,7 +4,7 @@ Plugin.create :run_com do
 
   filter_command do |menu|
     (UserConfig[:runcom]|| []).select{|m|!m.empty?}.each do |str|
-      slug = str.to_sym
+      slug = ("runcom_" + str).to_sym
       menu[slug] = {
         slug: slug,
         name: "コマンド実行 #{str}",
